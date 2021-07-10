@@ -9,17 +9,17 @@ export default [
         component: () => import('@/pages/HomePage')
       },
       {
-        path: '/team',
+        path: 'team',
         name: 'team',
         component: () => import('@/pages/TeamPage')
       },
       {
-        path: '/products',
+        path: 'products',
         name: 'product-search',
         component: () => import('@/pages/product/ProductSearchPage')
       },
       {
-        path: '/products/:slug',
+        path: 'products/:slug',
         name: 'product-detail',
         component: () => import('@/pages/product/ProductDetailPage')
       },
@@ -30,22 +30,22 @@ export default [
     component: () => import('@/layouts/auth/AuthLayout'),
     children: [
       {
-        path: '/login',
+        path: 'login',
         name: 'login',
         component: () => import('@/pages/auth/LoginPage')
       },
       {
-        path: '/register',
+        path: 'register',
         name: 'register',
         component: () => import('@/pages/auth/RegisterPage')
       },
       {
-        path: '/forgot-password',
+        path: 'forgot-password',
         name: 'forgot-password',
         component: () => import('@/pages/auth/ForgotPasswordPage')
       },
       {
-        path: '/reset-password',
+        path: 'reset-password',
         name: 'reset-password',
         component: () => import('@/pages/auth/ResetPasswordPage')
       },
@@ -56,17 +56,17 @@ export default [
     component: () => import('@/layouts/default/AppLayout'),
     children: [
       {
-        path: '/profile',
+        path: 'profile',
         name: 'profile',
         component: () => import('@/pages/user/ProfilePage')
       },
       {
-        path: '/cart',
+        path: 'cart',
         name: 'cart',
         component: () => import('@/pages/user/CartPage')
       },
       {
-        path: '/checkout',
+        path: 'checkout',
         name: 'checkout',
         component: () => import('@/pages/user/CheckoutPage')
       }
