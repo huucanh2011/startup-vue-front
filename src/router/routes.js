@@ -27,6 +27,7 @@ export default [
   },
   {
     path: '/auth',
+    meta: { guest: true },
     component: () => import('@/layouts/auth/AuthLayout'),
     children: [
       {
@@ -53,6 +54,7 @@ export default [
   },
   {
     path: '/user',
+    meta: { auth: true },
     component: () => import('@/layouts/default/AppLayout'),
     children: [
       {
