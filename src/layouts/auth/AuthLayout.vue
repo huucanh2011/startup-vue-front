@@ -5,24 +5,24 @@
     </div>
     <div class="auth">
       <h4 class="auth__title">{{ title }}</h4>
-      <p v-if="$route.name === 'login'">Bạn có tài khoản thì đăng nhập nhé!</p>
-      <p v-if="$route.name === 'register'">
-        Bạn hãy đăng ký để dễ dàng mua sắm hơn nhé!
+      <p v-if="routeName === 'login'">Bạn có tài khoản thì đăng nhập nhé 👋!</p>
+      <p v-if="routeName === 'register'">
+        Bạn hãy đăng ký để dễ dàng mua sắm hơn nhé 🥰!
+      </p>
+      <p v-if="routeName === 'forgot-password'">
+        Quên mật khẩu rồi à, nhập mail rồi nhấn gửi nha 😬!
       </p>
       <router-view />
-      <div v-if="$route.name !== 'reset-password'" class="auth__footer">
+      <div v-if="routeName !== 'reset-password'" class="auth__footer">
         <div>
-          <router-link
-            v-if="$route.name === 'login'"
-            :to="{ name: 'register' }"
-          >
+          <router-link v-if="routeName === 'login'" :to="{ name: 'register' }">
             Đăng ký
           </router-link>
           <router-link v-else :to="{ name: 'login' }">Đăng nhập</router-link>
           nè!
         </div>
         <router-link
-          v-if="$route.name !== 'forgot-password'"
+          v-if="routeName !== 'forgot-password'"
           :to="{ name: 'forgot-password' }"
         >
           Quên mật khẩu?
@@ -63,6 +63,9 @@ export default {
           break;
       }
       return title;
+    },
+    routeName() {
+      return this.$route.name;
     },
   },
 };
