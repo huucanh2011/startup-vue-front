@@ -10,6 +10,7 @@ import './components/global-components'
 import './plugins/vue-axios';
 import './plugins/vue-notification';
 import './plugins/vue-progressbar';
+import './plugins/vee-validate';
 
 Vue.config.productionTip = false
 
