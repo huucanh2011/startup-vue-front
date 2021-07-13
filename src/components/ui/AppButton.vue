@@ -1,6 +1,7 @@
 <template>
   <button class="btn" :class="btnStyle" v-bind="$attrs" v-on="$listeners">
-    <slot />
+    <span v-if="loading">Chờ tí...</span>
+    <slot v-else/>
   </button>
 </template>
 
@@ -11,6 +12,10 @@ export default {
       type: String,
       default: "",
     },
+    loading: {
+      type: Boolean,
+      default: false
+    }
   },
 };
 </script>

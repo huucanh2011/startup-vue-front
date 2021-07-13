@@ -2,7 +2,7 @@
   <div>
     <div v-if="loggedIn">
       Hi {{ user.name }}, 
-      <a href="#" @click="logout">Logout</a>
+      <a href="" @click="logout">Logout</a>
     </div>
     <div v-else>
       <router-link :to="{ name: 'login' }">Login</router-link> |

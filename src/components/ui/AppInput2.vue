@@ -1,109 +1,39 @@
 <template>
-  <ValidationProvider
-    class="input-control"
-    tag="div"
-    :vid="vid"
-    :rules="rules"
-    :name="name || label"
-    v-slot="{ errors, required, ariaInput, ariaMsg }"
-  >
-    <label v-if="label">{{ label}}<span>{{ required ? '*' : '' }}</span></label>
+  <div class="input-control">
+    <label><slot /></label>
     <input
       v-if="controlType === 'input'"
-      :class="{ 'has-errors': errors[0] }"
-      :id="name"
-      :type="type"
-      :placeholder="placeholder"
-      ref="input"
-      v-model="innerValue"
-      v-bind="ariaInput"
+      v-bind="$attrs"
+      :value="value"
+      @input="updateSelf($event.target.value)"
     />
     <textarea
       v-if="controlType === 'textarea'"
-      :class="{ 'has-errors': errors[0] }"
-      :id="name"
-      :type="type"
-      :placeholder="placeholder"
-      ref="input"
-      v-model="innerValue"
-      v-bind="ariaInput"
+      v-bind="$attrs"
+      :value="value"
+      @input="updateSelf($event.target.value)"
     />
-    <span class="error-msg" v-bind="ariaMsg" v-if="errors[0]">{{ errors[0] }}</span>
-  </ValidationProvider>
+  </div>
 </template>
 
 <script>
-import { ValidationProvider } from 'vee-validate';
 export default {
-  components: {
-    ValidationProvider
-  },
   props: {
     controlType: {
       type: String,
-      default: 'input'
-    },
-    vid: {
-      type: String,
-      default: undefined
-    },
-    name: {
-      type: String,
-      default: ''
-    },
-    label: {
-      type: String,
-      default: ''
-    },
-    rules: {
-      type: [Object, String],
-      default: ''
-    },
-    placeholder: {
-      type: String,
-      default: ''
-    },
-    type: {
-      type: String,
-      default: 'text',
-      validator(value) {
-        return [
-          'url',
-          'text',
-          'password',
-          'tel',
-          'search',
-          'number',
-          'email'
-        ].includes(value)
-      }
+      default: "input",
     },
     value: {
-      type: null,
-      default: ''
-    }
-  },
-  data() {
-    return {
-      innerValue: ''
-    }
-  },
-  watch: {
-    innerValue(value) {
-      this.$emit('input', value);
+      type: String,
+      default: "",
     },
-    value(val) {
-      if (val !== this.innerValue) {
-        this.innerValue = val;
-      }
-    }
   },
-  created() {
-    if (this.value) {
-      this.innerValue = this.value;
-    }
-  }
-}
+  methods: {
+    updateSelf(value) {
+      this.$emit("input", value);
+    },
+  },
+};
 </script>
 
 <style lang="scss" scoped>
@@ -125,11 +55,5 @@ export default {
       border-color: #666;
     }
   }
-  // input .has-errors, textarea .has-errors {
-  //   border: 1px solid red !important;
-  // }
-}
-.error-msg {
-  color: red;
 }
 </style>
