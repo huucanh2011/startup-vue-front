@@ -103,6 +103,30 @@ const actions = {
       commit(SET_LOADING, false)
     }
   },
+  async resetPassword({ commit }, authData) {
+    try {
+      commit(SET_LOADING, true);
+      const { data, status } = await Vue.axios.put('/auth/reset-password', authData);
+      if (data && status === 200) {
+        Vue.notify({
+          text: data.message,
+          type: 'success'
+        })
+        setTimeout(() => {
+          router.push({ name: 'login' })
+        }, 5000);
+      }
+    } catch (error) {
+      if (error.response) {
+        Vue.notify({
+          text: error.response.data.errors[0],
+          type: 'error'
+        })
+      }      
+    } finally {
+      commit(SET_LOADING, false);
+    }
+  },
   logout({ commit }) {
     commit(CLEAR_AUTH);
     window.location.replace('/');

@@ -6,11 +6,14 @@
     <div class="auth">
       <h4 class="auth__title">{{ title }}</h4>
       <p v-if="routeName === 'login'">Bạn có tài khoản thì đăng nhập nhé 👋!</p>
-      <p v-if="routeName === 'register'">
+      <p v-else-if="routeName === 'register'">
         Bạn hãy đăng ký để dễ dàng mua sắm hơn nhé 🥰!
       </p>
-      <p v-if="routeName === 'forgot-password'">
+      <p v-else-if="routeName === 'forgot-password'">
         Quên mật khẩu rồi à, nhập mail rồi nhấn gửi nha 😬!
+      </p>
+      <p v-else>
+        Bữa sau đừng quên mật khẩu nữa nhaaa!
       </p>
       <router-view />
       <div v-if="routeName !== 'reset-password'" class="auth__footer">
